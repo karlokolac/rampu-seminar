@@ -23,7 +23,11 @@ struct DirectoryView : View {
             
             Section {
                 ForEach(directories) { directory in
-                    LabeledContent(directory.name, value: "\(directory.notes.count)")
+                    NavigationLink {
+                        DirectoryNotesView(directoryName: directory.name)
+                    } label: {
+                        LabeledContent(directory.name, value: "\(directory.notes.count)")
+                    }
                 }.onDelete(perform: deleteDirectories)
             }
         }
