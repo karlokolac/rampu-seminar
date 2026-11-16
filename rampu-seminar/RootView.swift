@@ -13,7 +13,7 @@ struct RootView : View {
         TabView {
             Tab("Database", systemImage: "externaldrive") { ContentView() }
             Tab("Files", systemImage: "folder") { FilesView() }
-            Tab("Settings", systemImage: "gearshape") { Text("Settings") }
+            Tab("Settings", systemImage: "gearshape") { SettingsView() }
         }
     }
 }
