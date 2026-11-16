@@ -14,18 +14,34 @@ struct NewNoteView : View {
     
     @State private var title = ""
     @State private var content = ""
+    @State private var directory: Directory?
+    
+    @Query(sort: \Directory.name) private var directories: [Directory]
     
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Title", text: $title)
-                TextField("Content", text: $content, axis: .vertical).lineLimit(5...10)
+                Section {
+                    TextField("Title", text: $title)
+                    TextField("Content", text: $content, axis: .vertical).lineLimit(5...10)
+                }
+                
+                Section("Note directory") {
+                    Picker("Directory", selection: $directory) {
+                        Text("None").tag(nil as Directory?)
+                        ForEach(directories) { directory in
+                            Text(directory.name).tag(directory as Directory?)
+                        }
+                    }
+                }
             }
             .navigationTitle("New note")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Save") {
-                        modelContext.insert(Note(title: title, content: content))
+                        let note = Note(title: title, content: content)
+                        modelContext.insert(note)
+                        note.directory = directory
                         dismiss()
                     }.disabled(title.isEmpty)
                 }
@@ -35,8 +51,4 @@ struct NewNoteView : View {
             }
         }
     }
-}
-
-#Preview {
-    NewNoteView().modelContainer(for: Note.self, inMemory: true)
 }

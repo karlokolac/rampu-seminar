@@ -15,15 +15,16 @@ struct EditNoteView : View {
     
     var body: some View {
         Form {
-            Section("New Note") {
+            Section {
                 TextField("Title", text: $note.title)
                 TextField("Content", text: $note.content, axis: .vertical).lineLimit(5...)
             }
             
             Section("Note directory") {
                 Picker("Directory", selection: $note.directory) {
+                    Text("None").tag(nil as Directory?)
                     ForEach(directories) { directory in
-                        Text(directory.name).tag(directory as Directory)
+                        Text(directory.name).tag(directory as Directory?)
                     }
                 }
             }
