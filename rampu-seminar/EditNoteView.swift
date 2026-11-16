@@ -16,8 +16,12 @@ struct EditNoteView : View {
     @Query(sort: \Directory.name) private var directories: [Directory]
     
     @State private var tagName = ""
+    @State private var itemText = ""
     
     private var sortedTags: [Tag] { note.tags.sorted { $0.name < $1.name } }
+    private var sortedItems: [ChecklistItem] {
+        note.checklistItems.sorted { $0.position < $1.position }
+    }
 
     var body: some View {
         Form {
@@ -46,7 +50,19 @@ struct EditNoteView : View {
                 TextField("Add tag", text: $tagName)
                     .onSubmit(addTag)
             }
-
+            
+            Section("Checklist") {
+                ForEach(sortedItems) { item in
+                    Toggle(item.text, isOn: Bindable(item).isDone)
+                }
+                .onDelete { offsets in
+                    for index in offsets {
+                        modelContext.delete(sortedItems[index])
+                    }
+                }
+                TextField("Add item", text: $itemText)
+                    .onSubmit(addItem)
+            }
         }
         .navigationTitle(note.title.isEmpty ? "Untitled" : note.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -76,5 +92,16 @@ struct EditNoteView : View {
         }
         
         tagName = ""
+    }
+    
+    private func addItem() {
+        if itemText.isEmpty { return }
+
+        let position = note.checklistItems.count
+        let item = ChecklistItem(position: position, text: itemText)
+        modelContext.insert(item)
+        note.checklistItems.append(item)
+
+        itemText = ""
     }
 }

@@ -11,7 +11,7 @@ import SwiftData
 final class ChecklistItem {
     var position: Int
     var text: String
-    var isDone: Bool
+    var isDone: Bool = false
     var note: Note?
     
     init(position: Int, text: String) {
