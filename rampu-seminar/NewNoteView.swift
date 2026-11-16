@@ -36,3 +36,7 @@ struct NewNoteView : View {
         }
     }
 }
+
+#Preview {
+    NewNoteView().modelContainer(for: Note.self, inMemory: true)
+}

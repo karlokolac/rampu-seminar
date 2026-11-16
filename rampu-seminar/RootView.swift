@@ -19,5 +19,5 @@ struct RootView : View {
 }
 
 #Preview {
-    RootView().modelContainer(for: Item.self, inMemory: true)
+    RootView().modelContainer(for: Note.self, inMemory: true)
 }
