@@ -9,8 +9,9 @@ import SwiftData
 
 @Model
 final class Tag {
+    @Attribute(.unique)
     var name: String
-    var note: Note?
+    var notes: [Note] = []
     
     init(name: String) {
         self.name = name

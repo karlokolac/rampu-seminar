@@ -14,7 +14,11 @@ final class Note {
     var content: String
     var createdAt: Date
     var directory: Directory?
+    
+    @Relationship(inverse: \Tag.note)
     var tags: [Tag] = []
+    
+    @Relationship(deleteRule: .cascade, inverse: \ChecklistItem.note)
     var checklistItems: [ChecklistItem] = []
     
     init(title: String, content: String) {

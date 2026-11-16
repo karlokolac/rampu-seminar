@@ -10,7 +10,9 @@ import SwiftData
 @Model
 final class Directory {
     var name: String
-    var note: [Note] = []
+    
+    @Relationship(inverse: \Note.directory)
+    var notes: [Note] = []
     
     init(name: String) {
         self.name = name
