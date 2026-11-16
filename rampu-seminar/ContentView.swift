@@ -20,14 +20,10 @@ struct ContentView: View {
             List {
                 ForEach(notes) { note in
                     NavigationLink {
-                        ScrollView {
-                            Text(note.content)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding()
-                        }.navigationTitle(note.title)
+                        EditNoteView(note: note)
                     } label: {
                         VStack(alignment: .leading) {
-                            Text(note.title).font(.headline)
+                            Text(note.title.isEmpty ? "Untitled" : note.title).font(.headline)
                             Text(note.createdAt, format: .dateTime.day().month().hour().minute())
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
