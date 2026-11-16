@@ -37,6 +37,13 @@ struct ContentView: View {
                         Label("Add Note", systemImage: "plus")
                     }
                 }
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink {
+                        DirectoryView()
+                    } label: {
+                        Label("Directories", systemImage: "folder")
+                    }
+                }
             }
         } detail: {
             Text("Select a note")
