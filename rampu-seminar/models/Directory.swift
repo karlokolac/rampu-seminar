@@ -7,14 +7,16 @@
 
 import SwiftData
 
-@Model
-final class Directory {
-    var name: String
-    
-    @Relationship(inverse: \Note.directory)
-    var notes: [Note] = []
-    
-    init(name: String) {
-        self.name = name
+extension SchemaV2 {
+    @Model
+    final class Directory {
+        var name: String
+        
+        @Relationship(inverse: \Note.directory)
+        var notes: [Note] = []
+        
+        init(name: String) {
+            self.name = name
+        }
     }
 }

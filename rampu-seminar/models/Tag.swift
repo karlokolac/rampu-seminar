@@ -7,13 +7,15 @@
 
 import SwiftData
 
-@Model
-final class Tag {
-    @Attribute(.unique)
-    var name: String
-    var notes: [Note] = []
-    
-    init(name: String) {
-        self.name = name
+extension SchemaV2 {
+    @Model
+    final class Tag {
+        @Attribute(.unique)
+        var name: String
+        var notes: [Note] = []
+        
+        init(name: String) {
+            self.name = name
+        }
     }
 }

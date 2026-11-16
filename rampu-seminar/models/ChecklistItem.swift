@@ -7,17 +7,19 @@
 
 import SwiftData
 
-@Model
-final class ChecklistItem {
-    var position: Int
-    var text: String
-    var isDone: Bool = false
-    var note: Note?
-    
-    init(position: Int, text: String) {
-        self.position = position
-        self.text = text
-        self.isDone = false
+extension SchemaV2 {
+    @Model
+    final class ChecklistItem {
+        var position: Int
+        var text: String
+        var isDone: Bool = false
+        var note: Note?
+        
+        init(position: Int, text: String) {
+            self.position = position
+            self.text = text
+            self.isDone = false
+        }
     }
 }
 
