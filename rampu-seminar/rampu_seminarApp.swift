@@ -11,16 +11,15 @@ import SwiftData
 @main
 struct rampu_seminarApp: App {
     var sharedModelContainer: ModelContainer = {
-        let schema = Schema([
-            ChecklistItem.self,
-            Directory.self,
-            Note.self,
-            Tag.self,
-        ])
+        let schema = Schema(versionedSchema: SchemaV2.self)
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
         do {
-            return try ModelContainer(for: schema, configurations: [modelConfiguration])
+            return try ModelContainer(
+                for: schema,
+                migrationPlan: NotesMigrationPlan.self,
+                configurations: [modelConfiguration],
+            )
         } catch {
             fatalError("Could not create ModelContainer: \(error)")
         }

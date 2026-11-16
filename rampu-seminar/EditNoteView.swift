@@ -28,6 +28,7 @@ struct EditNoteView : View {
             Section {
                 TextField("Title", text: $note.title)
                 TextField("Content", text: $note.content, axis: .vertical).lineLimit(5...)
+                Toggle("Pinned", isOn: $note.isPinned)
             }
             
             Section("Note directory") {

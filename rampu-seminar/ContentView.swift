@@ -23,7 +23,13 @@ struct ContentView: View {
                         EditNoteView(note: note)
                     } label: {
                         VStack(alignment: .leading) {
-                            Text(note.title.isEmpty ? "Untitled" : note.title).font(.headline)
+                            HStack {
+                                Text(note.title.isEmpty ? "Untitled" : note.title).font(.headline)
+                                
+                                if note.isPinned {
+                                    Image(systemName: "pin.fill").foregroundStyle(.orange)
+                                }
+                            }
                             Text(note.createdAt, format: .dateTime.day().month().hour().minute())
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
