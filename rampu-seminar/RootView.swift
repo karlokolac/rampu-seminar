@@ -12,7 +12,7 @@ struct RootView : View {
     var body: some View {
         TabView {
             Tab("Database", systemImage: "externaldrive") { ContentView() }
-            Tab("Files", systemImage: "folder") { Text("Files") }
+            Tab("Files", systemImage: "folder") { FilesView() }
             Tab("Settings", systemImage: "gearshape") { Text("Settings") }
         }
     }
