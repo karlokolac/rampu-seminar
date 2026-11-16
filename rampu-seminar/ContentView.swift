@@ -31,6 +31,12 @@ struct ContentView: View {
                             if let directory = note.directory {
                                 Text(directory.name).font(.caption).foregroundStyle(.tint).padding(.top)
                             }
+                            
+                            if !note.tags.isEmpty {
+                                Text(note.tags.map { "#\($0.name)" }.sorted().joined(separator: " "))
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                            }
                         }
                     }
                 }.onDelete(perform: deleteNotes)
