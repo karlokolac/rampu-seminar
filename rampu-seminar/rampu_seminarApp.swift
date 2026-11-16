@@ -12,7 +12,10 @@ import SwiftData
 struct rampu_seminarApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            ChecklistItem.self,
+            Directory.self,
+            Note.self,
+            Tag.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

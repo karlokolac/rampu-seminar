@@ -15,7 +15,7 @@ final class Note {
     var createdAt: Date
     var directory: Directory?
     
-    @Relationship(inverse: \Tag.note)
+    @Relationship(inverse: \Tag.notes)
     var tags: [Tag] = []
     
     @Relationship(deleteRule: .cascade, inverse: \ChecklistItem.note)
