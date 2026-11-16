@@ -27,6 +27,10 @@ struct ContentView: View {
                             Text(note.createdAt, format: .dateTime.day().month().hour().minute())
                                 .font(.caption)
                                 .foregroundStyle(.secondary)
+                            
+                            if let directory = note.directory {
+                                Text(directory.name).font(.caption).foregroundStyle(.tint).padding(.top)
+                            }
                         }
                     }
                 }.onDelete(perform: deleteNotes)
